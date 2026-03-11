@@ -1,0 +1,52 @@
+name: Repo Tokens
+description: Zero-config token counting and context-window badges for any codebase
+author: ehmo
+branding:
+  icon: hash
+  color: green
+
+inputs:
+  path:
+    description: 'Path to scan (defaults to repo root)'
+    required: false
+    default: '.'
+  context-window:
+    description: 'Context window size for percentage calculation'
+    required: false
+    default: '200000'
+  encoding:
+    description: 'Tiktoken encoding name'
+    required: false
+    default: 'cl100k_base'
+  badge-path:
+    description: 'Path to write SVG badge (empty to skip)'
+    required: false
+    default: '.github/badges/tokens.svg'
+  readme:
+    description: 'Path to README file for marker replacement'
+    required: false
+    default: 'README.md'
+  marker:
+    description: 'HTML comment marker name in README'
+    required: false
+    default: 'token-count'
+  include-tests:
+    description: 'Include test files in token count'
+    required: false
+    default: 'false'
+
+outputs:
+  tokens:
+    description: 'Total token count (e.g. 34940)'
+  percentage:
+    description: 'Percentage of context window (e.g. 17)'
+  badge:
+    description: 'Badge text (e.g. 34.9k tokens · 17% of context window)'
+  json:
+    description: 'Full JSON output with per-project breakdown'
+
+runs:
+  using: docker
+  image: Dockerfile
+  args:
+    - --action
