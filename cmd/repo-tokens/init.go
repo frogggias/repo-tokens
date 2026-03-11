@@ -90,7 +90,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: ehmo/repo-tokens@v1
+      - uses: ehmo/repo-tokens@v0.1.0
         id: tokens
 
       - name: Commit if changed
