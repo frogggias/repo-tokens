@@ -24,9 +24,9 @@ func UpdateMarkers(path, marker, text, linkURL, badgeImgPath string) (bool, erro
 
 	var replacement string
 	if badgeImgPath != "" {
-		replacement = fmt.Sprintf(`<a href="%s"><img src="%s" alt="%s"></a>`, linkURL, badgeImgPath, text)
+		replacement = fmt.Sprintf(`[![%s](%s)](%s)`, text, badgeImgPath, linkURL)
 	} else {
-		replacement = fmt.Sprintf(`<a href="%s">%s</a>`, linkURL, text)
+		replacement = fmt.Sprintf(`[%s](%s)`, text, linkURL)
 	}
 	updated := re.ReplaceAllString(content, "${1}"+replacement+"${2}")
 	if updated == content {
